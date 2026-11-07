@@ -84,9 +84,9 @@ export default {
       "Verified with owner": false,
       "Listing status": "Application received"
     };
-    if (publicContact) fields["Public contact approved"] = publicContact;
-    if (link) fields["Website/social approved"] = link;
-    if (description) fields["Approved description"] = description;
+    if (publicContact) fields["Proposed public contact (private)"] = publicContact;
+    if (link) fields["Proposed website/social (private)"] = link;
+    if (description) fields["Proposed description (private)"] = description;
 
     const airtableResponse = await fetch(`https://api.airtable.com/v0/${BASE_ID}/${TABLE_ID}`, {
       method: "POST",
