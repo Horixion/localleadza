@@ -65,3 +65,16 @@ button:disabled{opacity:.65;cursor:wait}
   .button:hover{transform:none}
   .business-card:hover{background:var(--white)}
 }
+
+
+/* Quick service filters */
+.quick-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:0 0 20px}
+.quick-filters>span{font:8px var(--mono);letter-spacing:1px;color:var(--muted);margin-right:5px}
+.quick-filters button{min-height:34px;padding:7px 11px;border:1px solid var(--line);border-radius:2px;background:transparent;color:var(--ink);font:9px var(--mono);cursor:pointer;transition:background .18s,border-color .18s,color .18s}
+.quick-filters button:hover{border-color:var(--red);color:var(--red)}
+.quick-filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--white)}
+@media(max-width:650px){
+  .quick-filters{gap:7px;margin-bottom:16px}
+  .quick-filters>span{width:100%;margin-bottom:3px}
+  .quick-filters button{min-height:40px;padding:8px 10px}
+}
