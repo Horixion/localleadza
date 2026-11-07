@@ -63,6 +63,14 @@
         <label class="filter-box"><span class="sr-only">Service</span><select id="categoryFilter"><option value="all">All services</option><option value="photography">Photography</option><option value="videography">Videography</option><option value="photo-booth">Photo booth hire</option><option value="design">Design & branding</option><option value="creative">Other creative services</option></select></label>
         <label class="filter-box"><span class="sr-only">Area</span><select id="areaFilter"><option value="all">Everywhere nearby</option><option value="kempton-park">Kempton Park</option><option value="birchleigh">Birchleigh</option><option value="birchleigh-north">Birchleigh North</option><option value="glen-marais">Glen Marais</option><option value="norkem-park">Norkem Park</option><option value="east-rand">Wider East Rand</option></select></label>
       </div>
+      <div class="quick-filters" aria-label="Quick service filters">
+        <span>QUICK EXPLORE</span>
+        <button type="button" data-category="all" aria-pressed="true">Everything</button>
+        <button type="button" data-category="photography" aria-pressed="false">Photography</button>
+        <button type="button" data-category="videography" aria-pressed="false">Videography</button>
+        <button type="button" data-category="photo-booth" aria-pressed="false">Photo booths</button>
+        <button type="button" data-category="design" aria-pressed="false">Design</button>
+      </div>
       <div class="directory-toolbar"><p id="resultsSummary" aria-live="polite">The first names are being gathered.</p><div><span id="listingCount">0 LISTINGS</span><label class="sort-control">ORDER <select id="sortFilter"><option value="recommended">Featured first</option><option value="name">Name A–Z</option><option value="area">Area</option></select></label></div></div>
       <div id="businessGrid" class="business-grid" aria-live="polite"></div>
       <p class="directory-footnote"><span>NOTE:</span> No business is listed without permission. “Verified” means the details have been checked directly with the owner.</p>
