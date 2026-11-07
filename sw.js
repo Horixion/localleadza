@@ -17,7 +17,7 @@ self.addEventListener("activate", (event) => {
 });
 self.addEventListener("fetch", (event) => {
   if (event.request.method !== "GET" || new URL(event.request.url).origin !== self.location.origin) return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
+  // Keep config.js network-first so a newly deployed Worker URL is not trapped in an old cache.\n  if (new URL(event.request.url).pathname.endsWith("/config.js")) {\n    event.respondWith(fetch(event.request).then(response => {\n      if (response.ok) caches.open(CACHE_NAME).then(cache => cache.put(event.request, response.clone()));\n      return response;\n    }).catch(() => caches.match(event.request)));\n    return;\n  }\n  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request).then(response => {
     if (response.ok) {
       const copy = response.clone();
       caches.open(CACHE_NAME).then(cache => cache.put(event.request, copy));
