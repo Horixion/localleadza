@@ -10,7 +10,7 @@ function safeEmail(v){const e=String(v||"").trim();return/^[^\s@]+@[^\s@]+\.[^\s
 function safeTel(v){const p=String(v||"").replace(/[^+\d]/g,"");return p.length>=7?p:"";}
 function safeWhatsApp(v){const p=String(v||"").replace(/\D/g,"");return p.length>=9?"https://wa.me/"+p:"";}
 function renderBusinesses(){
- const term=searchInput.value.trim().toLowerCase(),cat=categoryFilter.value,area=areaFilter.value;clearSearch.hidden=!term;
+ const term=searchInput.value.trim().toLowerCase(),cat=categoryFilter.value,area=areaFilter.value;clearSearch.hidden=!term;document.querySelectorAll(".quick-filters button").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.category===cat)));
  let matches=businesses.filter(b=>[b.name,b.service,b.area,b.description,...(b.tags||[])].join(" ").toLowerCase().includes(term)&&(cat==="all"||b.category===cat)&&matchesArea(b,area));
  if(sortFilter.value==="name")matches.sort((a,b)=>a.name.localeCompare(b.name));
  if(sortFilter.value==="area")matches.sort((a,b)=>a.area.localeCompare(b.area));
@@ -21,7 +21,7 @@ function renderBusinesses(){
  grid.innerHTML=matches.map(b=>{const web=safeUrl(b.website),wa=safeWhatsApp(b.whatsapp),email=safeEmail(b.email),phone=safeTel(b.phone),badge=b.verified?'<span class="verified-badge">✓ VERIFIED</span>':'<span class="listing-badge">OWNER-APPROVED</span>';const links=[wa?'<a class="card-contact" href="'+wa+'" target="_blank" rel="noopener noreferrer">WHATSAPP ↗</a>':"",email?'<a class="card-contact" href="mailto:'+email+'">EMAIL ↗</a>':"",phone?'<a class="card-contact" href="tel:'+phone+'">CALL ↗</a>':"",web?'<a class="card-contact" href="'+web+'" target="_blank" rel="noopener noreferrer">WEBSITE ↗</a>':""].filter(Boolean).join("");return '<article class="business-card"><div class="card-topline"><span class="category-label">'+escapeHtml(b.service)+'</span>'+badge+'</div><h3>'+escapeHtml(b.name)+'</h3><p class="card-area">⌖ '+escapeHtml(b.area)+'</p><p class="card-description">'+escapeHtml(b.description||"")+'</p><div class="card-tags">'+(b.tags||[]).slice(0,3).map(t=>"<span>"+escapeHtml(t)+"</span>").join("")+'</div><div class="card-actions">'+(links||'<span class="contact-pending">CONTACT DETAILS TO FOLLOW</span>')+'</div></article>';}).join("");
 }
 function resetAllFilters(){searchInput.value="";categoryFilter.value="all";areaFilter.value="all";sortFilter.value="recommended";renderBusinesses();}
-searchInput.addEventListener("input",renderBusinesses);categoryFilter.addEventListener("change",renderBusinesses);areaFilter.addEventListener("change",renderBusinesses);sortFilter.addEventListener("change",renderBusinesses);
+searchInput.addEventListener("input",renderBusinesses);categoryFilter.addEventListener("change",renderBusinesses);areaFilter.addEventListener("change",renderBusinesses);sortFilter.addEventListener("change",renderBusinesses);document.querySelectorAll(".quick-filters button").forEach(button=>button.addEventListener("click",()=>{categoryFilter.value=button.dataset.category;renderBusinesses();}));
 clearSearch.addEventListener("click",()=>{searchInput.value="";renderBusinesses();searchInput.focus();});
 document.getElementById("year").textContent=new Date().getFullYear();
 const menuToggle=document.getElementById("menuToggle"),mainNav=document.getElementById("mainNav");
