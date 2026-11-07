@@ -42,7 +42,7 @@ Until steps 1–6 are completed, the website intentionally tells visitors that a
 ### Security notes
 
 - Airtable credentials are server-side Worker secrets, never browser code.
-- The Worker accepts requests only from the GitHub Pages origin, validates required fields and consent, limits field lengths, and ignores honeypot spam submissions.
+- The Worker checks the GitHub Pages Origin header and sets matching CORS headers for browsers, validates required fields and consent, limits field lengths, and ignores honeypot spam submissions. Origin/CORS checks are not authentication and can be spoofed by non-browser clients; monitor submissions and add stronger abuse controls if traffic grows.
 - CORS is not a complete anti-spam or authentication system. Monitor the table for abuse and rotate the Airtable token if it is exposed.
 - The Worker never sets owner publication approval or verification to true.
 - The application form collects personal contact details. Keep the Airtable base private and restrict access to people who need it.
