@@ -1,4 +1,4 @@
-const CACHE_NAME = "locallead-static-v2";
+const CACHE_NAME = "locallead-static-v3";
 const CORE_ASSETS = [
   "./",
   "./index.html",
